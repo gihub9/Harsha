@@ -1,4 +1,4 @@
-# ***Vintage Data Analysis by Ramakrishna B***
+# ***Vintage Data Analysis by Ramakrishna Bellana***
 ##1. First we need to load the excell data into R.
 ### Install and load package readxl.
 
@@ -120,7 +120,7 @@ print(g)
 ##15.when the data contains y values in a column, use stat="identity".
 ```{r}
 df = data.frame(x=1:3,y=11:13)
-g = g + ggplot(df,aes(x=x,y=y));
+g = ggplot(data= df,aes(x=x,y=y));
 g = g + geom_bar(stat = "identity")
 print(g)
 ```
@@ -155,12 +155,7 @@ t = data.frame(vintage$"prominent_Color");
 head(vintage$"Prominent_Color")
 ```
 
-```{r}
-names(iris);
-iris$"Species"
-Poss= table(iris$"Species") + 400;
-d = merge(vintage, df, by.x="prominent_Color",by.y= "Var1")
-```
+
 
 
 

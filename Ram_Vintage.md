@@ -1,4 +1,4 @@
-# ***Vintage Data Analysis by Ramakrishna B***
+# ***Vintage Data Analysis by Ramakrishna Bellana***
 ##1. First we need to load the excell data into R.
 ### Install and load package readxl.
 
@@ -312,95 +312,9 @@ print(g)
 
 ```r
 df = data.frame(x=1:3,y=11:13)
-g = g + ggplot(df,aes(x=x,y=y));
-```
-
-```
-## Warning: Incompatible methods ("+.gg", "Ops.data.frame") for "+"
-```
-
-```
-## Error in p + o: non-numeric argument to binary operator
-```
-
-```r
+g = ggplot(data= df,aes(x=x,y=y));
 g = g + geom_bar(stat = "identity")
 print(g)
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 1 has 72983 rows to replace 23399 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 5 has 72983 rows to replace 23399 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 6 has 72983 rows to replace 23399 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 1 has 72983 rows to replace 5 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 5 has 72983 rows to replace 5 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 6 has 72983 rows to replace 5 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 1 has 72983 rows to replace 11950 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 5 has 72983 rows to replace 11950 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 6 has 72983 rows to replace 11950 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 1 has 72983 rows to replace 12315 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 5 has 72983 rows to replace 12315 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 6 has 72983 rows to replace 12315 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 1 has 72983 rows to replace 25314 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 5 has 72983 rows to replace 25314 rows
-```
-
-```
-## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
-## replacement element 6 has 72983 rows to replace 25314 rows
 ```
 
 ![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
@@ -466,56 +380,6 @@ head(vintage$"Prominent_Color")
 ```
 
 
-```r
-names(iris);
-```
-
-```
-## [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width" 
-## [5] "Species"
-```
-
-```r
-iris$"Species"
-```
-
-```
-##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
-##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
-##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
-##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
-##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
-##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
-##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
-##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
-##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
-##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
-##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
-##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
-##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
-##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
-##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
-##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
-##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
-## [103] virginica  virginica  virginica  virginica  virginica  virginica 
-## [109] virginica  virginica  virginica  virginica  virginica  virginica 
-## [115] virginica  virginica  virginica  virginica  virginica  virginica 
-## [121] virginica  virginica  virginica  virginica  virginica  virginica 
-## [127] virginica  virginica  virginica  virginica  virginica  virginica 
-## [133] virginica  virginica  virginica  virginica  virginica  virginica 
-## [139] virginica  virginica  virginica  virginica  virginica  virginica 
-## [145] virginica  virginica  virginica  virginica  virginica  virginica 
-## Levels: setosa versicolor virginica
-```
-
-```r
-Poss= table(iris$"Species") + 400;
-d = merge(vintage, df, by.x="prominent_Color",by.y= "Var1")
-```
-
-```
-## Error in fix.by(by.x, x): 'by' must specify a uniquely valid column
-```
 
 
 
