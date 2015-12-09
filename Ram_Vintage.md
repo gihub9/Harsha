@@ -6,33 +6,8 @@
 ```r
 library("readxl");
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(stringr);
 library(ggplot2);
-```
-
-```
-## 
-## Attaching package: 'ggplot2'
-## 
-## The following object is masked _by_ '.GlobalEnv':
-## 
-##     diamonds
 ```
 
 ##2. Now define the path and load the vintage file into R.
@@ -50,18 +25,27 @@ getwd();
 
 ```r
 vintage <- read_excel("Vintage Art V2.1.xlsx",sheet = "Art-i-stick");
-```
-
-```
-## Error: 'Vintage Art V2.1.xlsx' does not exist in current working directory ('C:/Users/rbellana/Desktop').
-```
-
-```r
 head(vintage);
 ```
 
 ```
-## Error in head(vintage): object 'vintage' not found
+## Source: local data frame [6 x 26]
+## 
+##     Cid Art Auction House IsGood Purchase Critic Ratings Buyer No Zip Code
+##   (dbl)             (chr)           (dbl)          (dbl)    (dbl)    (dbl)
+## 1     1           sotheby               0         8.9046    21973    33619
+## 2     2           sotheby               0         9.3593    19638    33619
+## 3     3           sotheby               0         7.3807    19638    33619
+## 4     4           sotheby               0         6.5617    19638    33619
+## 5     5           sotheby               0         6.9367    19638    33619
+## 6     6           sotheby               0         8.1054    19638    33619
+## Variables not shown: Art Purchase Date (chr), Year of art piece (chr), Acq
+##   Cost (dbl), Art Category (chr), Art Piece Size (chr), Border of art
+##   piece (chr), Art Type (chr), Prominent Color (chr),
+##   CurrentAuctionAveragePrice (dbl), Brush (chr), Brush Size (chr), Brush
+##   Finesse (chr), Art Nationality (chr), Top 3 artists (chr),
+##   CollectorsAverageprice (dbl), GoodArt check (chr), AuctionHouseGuarantee
+##   (chr), Vnst (chr), Is It Online Sale (dbl), Min Guarantee Cost (dbl)
 ```
 
 ##3. Now studying the data.
@@ -71,7 +55,7 @@ dim(vintage);
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'vintage' not found
+## [1] 72983    26
 ```
 
 ```r
@@ -79,7 +63,19 @@ names(vintage);
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'vintage' not found
+##  [1] "Cid"                        "Art Auction House"         
+##  [3] "IsGood Purchase"            "Critic Ratings"            
+##  [5] "Buyer No"                   "Zip Code"                  
+##  [7] "Art Purchase Date"          "Year of art piece"         
+##  [9] "Acq Cost"                   "Art Category"              
+## [11] "Art Piece Size "            "Border of art piece"       
+## [13] "Art Type"                   "Prominent Color"           
+## [15] "CurrentAuctionAveragePrice" "Brush"                     
+## [17] "Brush Size"                 "Brush Finesse"             
+## [19] "Art Nationality"            "Top 3 artists "            
+## [21] "CollectorsAverageprice"     "GoodArt check"             
+## [23] "AuctionHouseGuarantee"      "Vnst"                      
+## [25] "Is It Online Sale"          "Min Guarantee Cost"
 ```
 
 ```r
@@ -87,7 +83,33 @@ str(vintage);
 ```
 
 ```
-## Error in str(vintage): object 'vintage' not found
+## Classes 'tbl_df', 'tbl' and 'data.frame':	72983 obs. of  26 variables:
+##  $ Cid                       : num  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Art Auction House         : chr  "sotheby" "sotheby" "sotheby" "sotheby" ...
+##  $ IsGood Purchase           : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Critic Ratings            : num  8.9 9.36 7.38 6.56 6.94 ...
+##  $ Buyer No                  : num  21973 19638 19638 19638 19638 ...
+##  $ Zip Code                  : num  33619 33619 33619 33619 33619 ...
+##  $ Art Purchase Date         : chr  "41102" "41102" "41102" "41102" ...
+##  $ Year of art piece         : chr  "01-01-1952" "01-01-1950" "01-01-1951" "01-01-1950" ...
+##  $ Acq Cost                  : num  49700 53200 34300 28700 28000 39200 29400 31500 39200 53900 ...
+##  $ Art Category              : chr  "Abstract Art Type I" "Gothic II" "Gothic II" "Gothic II" ...
+##  $ Art Piece Size            : chr  "17in. X 27in." "29in. X 3in." "12in. X 20in." "9in. X 12in." ...
+##  $ Border of art piece       : chr  "Border 1" "Border 2" "Border 3" "Border 3" ...
+##  $ Art Type                  : chr  "Type 1" "Type 2" "Type 3" "Type 4" ...
+##  $ Prominent Color           : chr  "Red" "White" "Maroon" "Silver" ...
+##  $ CurrentAuctionAveragePrice: num  52157 52192 28245 12908 22729 ...
+##  $ Brush                     : chr  "Camel Hair Brush" "Camel Hair Brush" "Camel Hair Brush" "Camel Hair Brush" ...
+##  $ Brush Size                : chr  "1" "1" "2" "1" ...
+##  $ Brush Finesse             : chr  "Fine" "Fine" "Coarse" "Fine" ...
+##  $ Art Nationality           : chr  "European" "American" "American" "American" ...
+##  $ Top 3 artists             : chr  "OTHER" "MF Hussain" "MF Hussain" "MF Hussain" ...
+##  $ CollectorsAverageprice    : num  86863 89537 60914 38626 55377 ...
+##  $ GoodArt check             : chr  "NULL" "NULL" "NULL" "NULL" ...
+##  $ AuctionHouseGuarantee     : chr  "NULL" "NULL" "NULL" "NULL" ...
+##  $ Vnst                      : chr  "FL" "FL" "FL" "FL" ...
+##  $ Is It Online Sale         : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Min Guarantee Cost        : num  7791 7371 9723 4410 7140 ...
 ```
 
 ```r
@@ -95,25 +117,50 @@ head(vintage);
 ```
 
 ```
-## Error in head(vintage): object 'vintage' not found
+## Source: local data frame [6 x 26]
+## 
+##     Cid Art Auction House IsGood Purchase Critic Ratings Buyer No Zip Code
+##   (dbl)             (chr)           (dbl)          (dbl)    (dbl)    (dbl)
+## 1     1           sotheby               0         8.9046    21973    33619
+## 2     2           sotheby               0         9.3593    19638    33619
+## 3     3           sotheby               0         7.3807    19638    33619
+## 4     4           sotheby               0         6.5617    19638    33619
+## 5     5           sotheby               0         6.9367    19638    33619
+## 6     6           sotheby               0         8.1054    19638    33619
+## Variables not shown: Art Purchase Date (chr), Year of art piece (chr), Acq
+##   Cost (dbl), Art Category (chr), Art Piece Size (chr), Border of art
+##   piece (chr), Art Type (chr), Prominent Color (chr),
+##   CurrentAuctionAveragePrice (dbl), Brush (chr), Brush Size (chr), Brush
+##   Finesse (chr), Art Nationality (chr), Top 3 artists (chr),
+##   CollectorsAverageprice (dbl), GoodArt check (chr), AuctionHouseGuarantee
+##   (chr), Vnst (chr), Is It Online Sale (dbl), Min Guarantee Cost (dbl)
 ```
 
 ##4. Now we want to split the height and widht of the Art Piece size.
 
 ```r
 s = str_split(vintage$"Art Piece Size ", "X");
-```
-
-```
-## Error in stri_split_regex(string, pattern, n = n, simplify = FALSE, opts_regex = attr(pattern, : object 'vintage' not found
-```
-
-```r
 head(s);
 ```
 
 ```
-## Error in head(s): object 's' not found
+## [[1]]
+## [1] "17in. " " 27in."
+## 
+## [[2]]
+## [1] "29in. " " 3in." 
+## 
+## [[3]]
+## [1] "12in. " " 20in."
+## 
+## [[4]]
+## [1] "9in. "  " 12in."
+## 
+## [[5]]
+## [1] "7in. "  " 19in."
+## 
+## [[6]]
+## [1] "22in. " " 6in."
 ```
 			 #####Sample for spliting.
                   #a = "2 X 3";      
@@ -135,39 +182,12 @@ get_y= function(ele){
 
 ```r
 x=sapply(s,FUN=get_x);
-```
-
-```
-## Error in lapply(X = X, FUN = FUN, ...): object 's' not found
-```
-
-```r
 y=sapply(s,FUN=get_y);
-```
-
-```
-## Error in lapply(X = X, FUN = FUN, ...): object 's' not found
-```
-
-```r
 head(x)
 ```
 
 ```
-##             [,1]       [,2]       [,3]        [,4]       [,5]        [,6]
-## [1,] -0.19139217         NA -0.3340366 -0.37723765 -0.8473501          NA
-## [2,] -0.78190665  0.2527501         NA  0.09761946 -0.2606394  0.04324404
-## [3,]          NA -1.1719483  0.6366744          NA -0.4144197 -0.33265732
-## [4,]  0.75050145  0.6687143 -0.1084317 -0.87559247 -0.1830508 -1.82223542
-## [5,]          NA -1.6501009  0.5137628  0.12176000  0.4070561          NA
-## [6,]  0.08005964 -0.3658522  0.3992718          NA  0.6246331 -0.83758243
-##             [,7]       [,8]      [,9]      [,10]
-## [1,] -2.73221952 -0.5380708 0.4852268  0.4180578
-## [2,] -0.09979059 -2.8557587 0.6967688 -0.4002352
-## [3,]  0.97603173 -0.7896469 0.1855139         NA
-## [4,]  0.41386892  0.4878146 0.7007335 -1.6070809
-## [5,]  0.91232216         NA 0.3116810 -0.4157518
-## [6,]          NA  0.5006946 0.7604624  0.4220084
+## [1] "17in. " "29in. " "12in. " "9in. "  "7in. "  "22in. "
 ```
 
 ```r
@@ -175,7 +195,7 @@ head(y)
 ```
 
 ```
-## [1] 0.0002 0.0012 0.0060 0.0300 0.0900 0.2700
+## [1] " 27in." " 3in."  " 20in." " 12in." " 19in." " 6in."
 ```
 
 ## 6. We are getting as "17in. ",where "in." and space is not required.
@@ -196,36 +216,14 @@ y = str_trim(y);
 
 ```r
 vintage$x = as.integer(x)
-```
-
-```
-## Error in vintage$x = as.integer(x): object 'vintage' not found
-```
-
-```r
 vintage$Y = as.integer(y)
-```
-
-```
-## Error in vintage$Y = as.integer(y): object 'vintage' not found
 ```
 
 ##9. Column names should be like one word.So replace space with "_".
 
 ```r
 names(vintage) = str_trim(names(vintage));
-```
-
-```
-## Error in stri_trim_both(string): object 'vintage' not found
-```
-
-```r
 names(vintage) = str_replace_all(names(vintage)," ","_");
-```
-
-```
-## Error in stri_replace_all_regex(string, pattern, replacement, vectorize_all = vec, : object 'vintage' not found
 ```
 
 
@@ -235,43 +233,16 @@ names(vintage) = str_replace_all(names(vintage)," ","_");
 vintage = arrange(vintage,x,y);
 ```
 
-```
-## Error in arrange_(.data, .dots = lazyeval::lazy_dots(...)): object 'vintage' not found
-```
-
 ##11. Now analyzing the height and width of the paints done on basis of brush size and painter.
 
 ```r
 g3 = ggplot(data= vintage,aes(x=x,y=y,size=vintage$Brush_Size,color=vintage$Brush_Size));
-```
-
-```
-## Error in ggplot(data = vintage, aes(x = x, y = y, size = vintage$Brush_Size, : object 'vintage' not found
-```
-
-```r
 g3 = g3 + geom_point();
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g3' not found
-```
-
-```r
 g3 = g3 + facet_grid(.~Top_3_artists);  
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g3' not found
-```
-
-```r
 print(g3);
 ```
 
-```
-## Error in print(g3): object 'g3' not found
-```
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
 
 ##12.
 
@@ -280,7 +251,20 @@ names(vintage)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'vintage' not found
+##  [1] "Cid"                        "Art_Auction_House"         
+##  [3] "IsGood_Purchase"            "Critic_Ratings"            
+##  [5] "Buyer_No"                   "Zip_Code"                  
+##  [7] "Art_Purchase_Date"          "Year_of_art_piece"         
+##  [9] "Acq_Cost"                   "Art_Category"              
+## [11] "Art_Piece_Size"             "Border_of_art_piece"       
+## [13] "Art_Type"                   "Prominent_Color"           
+## [15] "CurrentAuctionAveragePrice" "Brush"                     
+## [17] "Brush_Size"                 "Brush_Finesse"             
+## [19] "Art_Nationality"            "Top_3_artists"             
+## [21] "CollectorsAverageprice"     "GoodArt_check"             
+## [23] "AuctionHouseGuarantee"      "Vnst"                      
+## [25] "Is_It_Online_Sale"          "Min_Guarantee_Cost"        
+## [27] "x"                          "Y"
 ```
 
 ```r
@@ -299,24 +283,15 @@ unique(vintage$"Top_3_artists")
 ```
 
 ```
-## Error in unique(vintage$Top_3_artists): object 'vintage' not found
+## [1] "MF Hussain" "OTHER"      "Pablo"      "Rembrandt"  "NULL"
 ```
 
 ```r
 t = table(vintage$"Top_3_artists")
-```
-
-```
-## Error in table(vintage$Top_3_artists): object 'vintage' not found
-```
-
-```r
 barplot(sort(t),horiz = T)
 ```
 
-```
-## Error in sort.int(x, na.last = na.last, decreasing = decreasing, ...): 'x' must be atomic
-```
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
 
 ```r
 ##14.Count of art by Artists:
@@ -325,43 +300,13 @@ barplot(sort(t),horiz = T)
 
 ```r
 g = ggplot(data=vintage,aes(x=vintage$"Top_3_artists"))
-```
-
-```
-## Error in ggplot(data = vintage, aes(x = vintage$Top_3_artists)): object 'vintage' not found
-```
-
-```r
 g = g +  geom_bar(stat="bin",fill= "blue",position ="stack",color = "red");
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g' not found
-```
-
-```r
 g = g + geom_bar(width = 0.5,fill= topo.colors(5),color="darkgreen");
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g' not found
-```
-
-```r
 g = g + coord_flip();
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g' not found
-```
-
-```r
 print(g)
 ```
 
-```
-## Error in print(g): object 'g' not found
-```
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
 
 ##15.when the data contains y values in a column, use stat="identity".
 
@@ -371,93 +316,117 @@ g = g + ggplot(df,aes(x=x,y=y));
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'g' not found
+## Warning: Incompatible methods ("+.gg", "Ops.data.frame") for "+"
+```
+
+```
+## Error in p + o: non-numeric argument to binary operator
 ```
 
 ```r
 g = g + geom_bar(stat = "identity")
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g' not found
-```
-
-```r
 print(g)
 ```
 
 ```
-## Error in print(g): object 'g' not found
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 1 has 72983 rows to replace 23399 rows
 ```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 5 has 72983 rows to replace 23399 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 6 has 72983 rows to replace 23399 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 1 has 72983 rows to replace 5 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 5 has 72983 rows to replace 5 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 6 has 72983 rows to replace 5 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 1 has 72983 rows to replace 11950 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 5 has 72983 rows to replace 11950 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 6 has 72983 rows to replace 11950 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 1 has 72983 rows to replace 12315 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 5 has 72983 rows to replace 12315 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 6 has 72983 rows to replace 12315 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 1 has 72983 rows to replace 25314 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 5 has 72983 rows to replace 25314 rows
+```
+
+```
+## Warning in `[<-.data.frame`(`*tmp*`, nl, value = structure(list(y = c(27, :
+## replacement element 6 has 72983 rows to replace 25314 rows
+```
+
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
 
 ##16. Count the "IsGood_Purchase" per Artist.
 ### weighted column should be numeric to that value, so that we can sum up together.
 
 ```r
 g1 = ggplot(data=vintage,aes(x=vintage$"Top_3_artists"),weight = vintage$"IsGood_Purchase");
-```
-
-```
-## Error in ggplot(data = vintage, aes(x = vintage$Top_3_artists), weight = vintage$IsGood_Purchase): object 'vintage' not found
-```
-
-```r
 g1 = g1 + geom_bar(width=0.5);
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g1' not found
-```
-
-```r
 g1 = g1 + coord_flip();
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g1' not found
-```
-
-```r
 print(g1);
 ```
 
-```
-## Error in print(g1): object 'g1' not found
-```
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
 
 ##17.Art Nationality
 
 ```r
 g2 = ggplot(data=vintage,aes(x=vintage$"Art_Nationality"));
-```
-
-```
-## Error in ggplot(data = vintage, aes(x = vintage$Art_Nationality)): object 'vintage' not found
-```
-
-```r
 g2 = g2 + geom_bar(width=0.5,stat = "bin",fill=topo.colors(5));
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g2' not found
-```
-
-```r
 g2 = g2 + coord_flip();
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'g2' not found
-```
-
-```r
 print(g2);
 ```
 
-```
-## Error in print(g2): object 'g2' not found
-```
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
 
 ### Bin data--> Missing values are currently sliently dropped.
 
@@ -465,18 +434,14 @@ print(g2);
 
 ```r
 freq = table(vintage$"Prominent_Color")
-```
-
-```
-## Error in table(vintage$Prominent_Color): object 'vintage' not found
-```
-
-```r
 names(freq)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'freq' not found
+##  [1] "Beige"     "Black"     "Blue"      "Brown"     "Gold"     
+##  [6] "Green"     "Grey"      "Maroon"    "Not Avail" "Null"     
+## [11] "Orange"    "Other"     "Purple"    "Red"       "Silver"   
+## [16] "White"     "Yellow"
 ```
 
 ```r
@@ -484,39 +449,20 @@ str(freq)
 ```
 
 ```
-## Error in str(freq): object 'freq' not found
+##  'table' int [1:17(1d)] 1584 7627 10347 436 5231 3194 7887 2046 94 8 ...
+##  - attr(*, "dimnames")=List of 1
+##   ..$ : chr [1:17] "Beige" "Black" "Blue" "Brown" ...
 ```
 
 ```r
 pos = freq + 200
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'freq' not found
-```
-
-```r
 df = data.frame(Poss);
-```
-
-```
-## Error in data.frame(Poss): object 'Poss' not found
-```
-
-```r
 t = data.frame(vintage$"prominent_Color");
-```
-
-```
-## Error in data.frame(vintage$prominent_Color): object 'vintage' not found
-```
-
-```r
 head(vintage$"Prominent_Color")
 ```
 
 ```
-## Error in head(vintage$Prominent_Color): object 'vintage' not found
+## [1] "Silver" "Black"  "Grey"   "Black"  "Silver" "Blue"
 ```
 
 
@@ -568,7 +514,7 @@ d = merge(vintage, df, by.x="prominent_Color",by.y= "Var1")
 ```
 
 ```
-## Error in merge(vintage, df, by.x = "prominent_Color", by.y = "Var1"): object 'vintage' not found
+## Error in fix.by(by.x, x): 'by' must specify a uniquely valid column
 ```
 
 
